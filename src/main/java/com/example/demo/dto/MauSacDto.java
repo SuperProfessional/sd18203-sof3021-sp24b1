@@ -1,12 +1,13 @@
 package com.example.demo.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
-@Builder
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MauSacDto {
-    private final Integer id;
-    private final String ma;
-    private final String ten;
+    private Integer id;
+    private String ma;
+    private String ten;
 }
