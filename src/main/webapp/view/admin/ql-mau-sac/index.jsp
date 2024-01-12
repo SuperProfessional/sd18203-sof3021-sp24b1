@@ -27,10 +27,10 @@
             <td>${mauSac.ma}</td>
             <td>${mauSac.ten}</td>
             <td>
-                <a href="editForm.jsp?id=${mauSac.id}">
+                <a href="/mau-sac/edit/${mauSac.id}">
                     <button>Edit</button>
                 </a>
-                <a href="delete.jsp?id=${mauSac.id}">
+                <a href="/mau-sac/delete/${mauSac.id}">
                     <button>Delete</button>
                 </a>
             </td>
@@ -39,7 +39,7 @@
     </tbody>
 </table>
 
-<a href="createForm.jsp">
+<a href="/mau-sac/create">
     <button>Create</button>
 </a>
 

@@ -31,13 +31,13 @@ public class SanPhamChiTietEntity {
     private String maSPCT;
 
     @OneToMany(mappedBy = "sanPhamChiTietEntity")
-    @JoinColumn(name = "kich_thuoc_id")
+//    @JoinColumn(name = "kich_thuoc_id")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Collection<KichThuocEntity> kichThuocEntityList;
 
     @OneToMany(mappedBy = "sanPhamChiTietEntity")
-    @JoinColumn(name = "mau_sac_id")
+//    @JoinColumn(name = "mau_sac_id")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Collection<MauSacEntity> mauSacEntityList;
