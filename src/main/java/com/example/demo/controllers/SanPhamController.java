@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.example.demo.dto.MauSacDto;
+import com.example.demo.dto.SanPhamDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,31 +16,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller()
-@RequestMapping(value = "/mau-sac")
+@RequestMapping(value = "/san-pham")
 @RequiredArgsConstructor
-public class MauSacController {
+public class SanPhamController {
 
-    private final List<MauSacDto> mauSacDtoList;
+    private final List<SanPhamDto> sanPhamDtoList;
 
     @GetMapping(value = "/index")
     public String index(Model model) {
-        model.addAttribute("mauSacList", this.mauSacDtoList);
-        return "admin/ql-mau-sac/index";
+        model.addAttribute("sanPhamList", this.sanPhamDtoList);
+        return "admin/ql-san-pham/index";
     }
 
     @GetMapping(value = "/create")
     public String create(Model model) {
-        model.addAttribute("mauSac", new MauSacDto());
-        return "admin/ql-mau-sac/create";
+        model.addAttribute("sanPham", new SanPhamDto());
+        return "admin/ql-san-pham/create";
     }
 
     @PostMapping(value = "/store")
     public String store(
-            @Valid @ModelAttribute(name = "mauSac") MauSacDto dto,
-            BindingResult result
+            @Valid @ModelAttribute(name = "sanPham") SanPhamDto dto
     ) {
-        this.mauSacDtoList.add(dto);
-        return "redirect:/mau-sac/create";
+        this.sanPhamDtoList.add(dto);
+        return "redirect:/san-pham/create";
     }
 
     @GetMapping(value = "/edit/{id}")
@@ -49,39 +47,39 @@ public class MauSacController {
             Model model,
             @PathVariable(name = "id") Integer id) {
 
-        MauSacDto mauSacDto =
-                this.mauSacDtoList.stream()
+        SanPhamDto sanPhamDto =
+                this.sanPhamDtoList.stream()
                         .filter(
                                 dto -> Objects.equals(dto.getId(), id)
                         )
                         .findFirst()
-                        .orElse(new MauSacDto());
+                        .orElse(new SanPhamDto());
 
-        model.addAttribute("mauSac", mauSacDto);
-        return "admin/ql-mau-sac/edit";
+        model.addAttribute("sanPham", sanPhamDto);
+        return "admin/ql-san-pham/edit";
     }
 
     @PostMapping(value = "/update/{id}")
     public String update(
             @PathVariable Integer id,
-            @Valid @ModelAttribute(name = "mauSac") MauSacDto dto
+            @Valid @ModelAttribute(name = "sanPham") SanPhamDto dto
     ) {
-        this.mauSacDtoList.forEach(
-                mauSacDto -> {
-                    if (Objects.equals(mauSacDto.getId(), id)) {
-                        mauSacDto.setMa(dto.getMa());
-                        mauSacDto.setTen(dto.getTen());
+        this.sanPhamDtoList.forEach(
+                sanPhamDto -> {
+                    if (Objects.equals(sanPhamDto.getId(), id)) {
+                        sanPhamDto.setMa(dto.getMa());
+                        sanPhamDto.setTen(dto.getTen());
                     }
                 }
         );
-        return "redirect:/mau-sac/index";
+        return "redirect:/san-pham/index";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id) {
-        this.mauSacDtoList.removeIf(
-                mauSacDto -> Objects.equals(mauSacDto.getId(), id)
+        this.sanPhamDtoList.removeIf(
+                sanPhamDto -> Objects.equals(sanPhamDto.getId(), id)
         );
-        return "redirect:/mau-sac/index";
+        return "redirect:/san-pham/index";
     }
 }

@@ -7,27 +7,32 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Mau Sac Form</title>
+    <title>Khach Hang Form</title>
 </head>
 <body>
 
-<h2>Mau Sac Form</h2>
+<h2>Khach Hang Form</h2>
 
-<f:form action="/mau-sac/store" method="post" modelAttribute="mauSac">
+<f:form action="/khach-hang/store" method="post" modelAttribute="khachHang">
     <div>
         <label for="id">ID:</label>
         <f:input type="number" name="id" path="id"/><br>
         <f:errors path="id" cssStyle="color: red"/>
     </div>
     <div>
-        <label for="ma">Ma:</label>
-        <f:input type="text" id="ma" name="ma" path="ma"/><br>
-        <f:errors path="ma" cssStyle="color: red"/>
-    </div>
-    <div>
         <label for="ten">Ten:</label>
         <f:input type="text" id="ten" name="ten" path="ten"/><br>
         <f:errors path="ten" cssStyle="color: red"/>
+    </div>
+    <div>
+        <label for="sdt">SDT:</label>
+        <f:input type="text" id="sdt" name="sdt" path="sdt"/><br>
+        <f:errors path="sdt" cssStyle="color: red"/>
+    </div>
+    <div>
+        <label for="maKH">MaKH:</label>
+        <f:input type="text" id="maKH" name="maKH" path="maKH"/><br>
+        <f:errors path="maKH" cssStyle="color: red"/>
     </div>
     <input type="submit" value="Submit">
 </f:form>

@@ -7,13 +7,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Mau Sac Form</title>
+    <title>Kich Thuoc Form</title>
 </head>
 <body>
 
-<h2>Mau Sac Form</h2>
+<h2>Kich Thuoc Form</h2>
 
-<f:form action="/mau-sac/store" method="post" modelAttribute="mauSac">
+<f:form action="/kich-thuoc/store" method="post" modelAttribute="kichThuoc">
     <div>
         <label for="id">ID:</label>
         <f:input type="number" name="id" path="id"/><br>

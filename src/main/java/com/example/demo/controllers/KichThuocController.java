@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.example.demo.dto.MauSacDto;
+import com.example.demo.dto.KichThuocDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,31 +16,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller()
-@RequestMapping(value = "/mau-sac")
+@RequestMapping(value = "/kich-thuoc")
 @RequiredArgsConstructor
-public class MauSacController {
+public class KichThuocController {
 
-    private final List<MauSacDto> mauSacDtoList;
+    private final List<KichThuocDto> kichThuocDtoList;
 
     @GetMapping(value = "/index")
     public String index(Model model) {
-        model.addAttribute("mauSacList", this.mauSacDtoList);
-        return "admin/ql-mau-sac/index";
+        model.addAttribute("kichThuocList", this.kichThuocDtoList);
+        return "admin/ql-kich-thuoc/index";
     }
 
     @GetMapping(value = "/create")
     public String create(Model model) {
-        model.addAttribute("mauSac", new MauSacDto());
-        return "admin/ql-mau-sac/create";
+        model.addAttribute("kichThuoc", new KichThuocDto());
+        return "admin/ql-kich-thuoc/create";
     }
 
     @PostMapping(value = "/store")
     public String store(
-            @Valid @ModelAttribute(name = "mauSac") MauSacDto dto,
-            BindingResult result
+            @Valid @ModelAttribute(name = "kichThuoc") KichThuocDto dto
     ) {
-        this.mauSacDtoList.add(dto);
-        return "redirect:/mau-sac/create";
+        this.kichThuocDtoList.add(dto);
+        return "redirect:/kich-thuoc/create";
     }
 
     @GetMapping(value = "/edit/{id}")
@@ -49,39 +47,39 @@ public class MauSacController {
             Model model,
             @PathVariable(name = "id") Integer id) {
 
-        MauSacDto mauSacDto =
-                this.mauSacDtoList.stream()
+        KichThuocDto kichThuocDto =
+                this.kichThuocDtoList.stream()
                         .filter(
                                 dto -> Objects.equals(dto.getId(), id)
                         )
                         .findFirst()
-                        .orElse(new MauSacDto());
+                        .orElse(new KichThuocDto());
 
-        model.addAttribute("mauSac", mauSacDto);
-        return "admin/ql-mau-sac/edit";
+        model.addAttribute("kichThuoc", kichThuocDto);
+        return "admin/ql-kich-thuoc/edit";
     }
 
     @PostMapping(value = "/update/{id}")
     public String update(
             @PathVariable Integer id,
-            @Valid @ModelAttribute(name = "mauSac") MauSacDto dto
+            @Valid @ModelAttribute(name = "kichThuoc") KichThuocDto dto
     ) {
-        this.mauSacDtoList.forEach(
-                mauSacDto -> {
-                    if (Objects.equals(mauSacDto.getId(), id)) {
-                        mauSacDto.setMa(dto.getMa());
-                        mauSacDto.setTen(dto.getTen());
+        this.kichThuocDtoList.forEach(
+                kichThuocDto -> {
+                    if (Objects.equals(kichThuocDto.getId(), id)) {
+                        kichThuocDto.setMa(dto.getMa());
+                        kichThuocDto.setTen(dto.getTen());
                     }
                 }
         );
-        return "redirect:/mau-sac/index";
+        return "redirect:/kich-thuoc/index";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id) {
-        this.mauSacDtoList.removeIf(
-                mauSacDto -> Objects.equals(mauSacDto.getId(), id)
+        this.kichThuocDtoList.removeIf(
+                kichThuocDto -> Objects.equals(kichThuocDto.getId(), id)
         );
-        return "redirect:/mau-sac/index";
+        return "redirect:/kich-thuoc/index";
     }
 }

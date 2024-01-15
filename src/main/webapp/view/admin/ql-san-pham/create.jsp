@@ -7,13 +7,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Mau Sac Form</title>
+    <title>San Pham Form</title>
 </head>
 <body>
 
-<h2>Mau Sac Form</h2>
+<h2>San Pham Form</h2>
 
-<f:form action="/mau-sac/store" method="post" modelAttribute="mauSac">
+<f:form action="/san-pham/store" method="post" modelAttribute="sanPham">
     <div>
         <label for="id">ID:</label>
         <f:input type="number" name="id" path="id"/><br>
@@ -28,6 +28,7 @@
         <label for="ten">Ten:</label>
         <f:input type="text" id="ten" name="ten" path="ten"/><br>
         <f:errors path="ten" cssStyle="color: red"/>
+
     </div>
     <input type="submit" value="Submit">
 </f:form>
