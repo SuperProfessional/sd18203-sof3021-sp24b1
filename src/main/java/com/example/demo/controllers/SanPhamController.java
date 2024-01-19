@@ -1,11 +1,9 @@
 package com.example.demo.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.example.demo.dto.SanPhamDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +33,7 @@ public class SanPhamController {
     }
 
     @PostMapping(value = "/store")
-    public String store(
-            @Valid @ModelAttribute(name = "sanPham") SanPhamDto dto
-    ) {
+    public String store(@ModelAttribute(name = "sanPham") SanPhamDto dto) {
         this.sanPhamDtoList.add(dto);
         return "redirect:/san-pham/create";
     }
@@ -62,7 +58,7 @@ public class SanPhamController {
     @PostMapping(value = "/update/{id}")
     public String update(
             @PathVariable Integer id,
-            @Valid @ModelAttribute(name = "sanPham") SanPhamDto dto
+            @ModelAttribute(name = "sanPham") SanPhamDto dto
     ) {
         this.sanPhamDtoList.forEach(
                 sanPhamDto -> {

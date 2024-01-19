@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.demo.dto.HoaDonDto;
 import com.example.demo.dto.KhachHangDto;
+import com.example.demo.dto.MauSacDto;
 import com.example.demo.dto.NhanVienDto;
 import com.example.demo.dto.SanPhamDto;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -18,14 +19,28 @@ public class DataBeansConfig {
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    List<MauSacDto> dataMauSacDto(){
+
+        List<MauSacDto> mauSacDtoList = new ArrayList<>();
+        mauSacDtoList.add(new MauSacDto(1, "#FF0000", "White",Boolean.TRUE));
+        mauSacDtoList.add(new MauSacDto(2, "#00008B", "Black",Boolean.TRUE));
+        mauSacDtoList.add(new MauSacDto(3, "00FF00", "Green",Boolean.TRUE));
+        mauSacDtoList.add(new MauSacDto(4, "FF00FF", "Olive",Boolean.TRUE));
+        mauSacDtoList.add(new MauSacDto(5, "ADD8E6", "Orange",Boolean.TRUE));
+
+        return mauSacDtoList;
+    }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     List<NhanVienDto> dataNhanVienDto(){
 
         List<NhanVienDto> nhanVienDtoList = new ArrayList<>();
-        nhanVienDtoList.add(new NhanVienDto(1, "Nguyen Hoan", "PH17070","hoannvph17079","1234",Boolean.TRUE));
-        nhanVienDtoList.add(new NhanVienDto(2, "Nguyen Hoan", "PH17071","hoannvph17079","1234",Boolean.TRUE));
-        nhanVienDtoList.add(new NhanVienDto(3, "Nguyen Hoan", "PH17072","hoannvph17079","1234",Boolean.TRUE));
-        nhanVienDtoList.add(new NhanVienDto(4, "Nguyen Hoan", "PH17073","hoannvph17079","1234",Boolean.TRUE));
-        nhanVienDtoList.add(new NhanVienDto(5, "Nguyen Hoan", "PH17074","hoannvph17079","1234",Boolean.TRUE));
+        nhanVienDtoList.add(new NhanVienDto(1, "Nguyen Hoan", "NV01","hoannvph17079","1234",Boolean.TRUE));
+        nhanVienDtoList.add(new NhanVienDto(2, "Nguyen Hoan", "NV02","hoannvph17079","1234",Boolean.TRUE));
+        nhanVienDtoList.add(new NhanVienDto(3, "Nguyen Hoan", "NV03","hoannvph17079","1234",Boolean.TRUE));
+        nhanVienDtoList.add(new NhanVienDto(4, "Nguyen Hoan", "NV04","hoannvph17079","1234",Boolean.TRUE));
+        nhanVienDtoList.add(new NhanVienDto(5, "Nguyen Hoan", "NV05","hoannvph17079","1234",Boolean.TRUE));
 
         return nhanVienDtoList;
     }
@@ -35,11 +50,11 @@ public class DataBeansConfig {
     List<KhachHangDto> dataKhachHangDto(){
 
         List<KhachHangDto> khachHangDtoList = new ArrayList<>();
-        khachHangDtoList.add(new KhachHangDto(1, "Nguyen Hoan", "0961496837","PH17079",Boolean.TRUE));
-        khachHangDtoList.add(new KhachHangDto(2, "Nguyen Hoan", "0961496837","PH27079",Boolean.TRUE));
-        khachHangDtoList.add(new KhachHangDto(3, "Nguyen Hoan", "0961496837","PH37079",Boolean.TRUE));
-        khachHangDtoList.add(new KhachHangDto(4, "Nguyen Hoan", "0961496837","PH47079",Boolean.TRUE));
-        khachHangDtoList.add(new KhachHangDto(5, "Nguyen Hoan", "0961496837","PH57079",Boolean.TRUE));
+        khachHangDtoList.add(new KhachHangDto(1, "Nguyen Hoan", "0961496837","KH01",Boolean.TRUE));
+        khachHangDtoList.add(new KhachHangDto(2, "Nguyen Hoan", "0961496837","KH02",Boolean.TRUE));
+        khachHangDtoList.add(new KhachHangDto(3, "Nguyen Hoan", "0961496837","KH03",Boolean.TRUE));
+        khachHangDtoList.add(new KhachHangDto(4, "Nguyen Hoan", "0961496837","KH04",Boolean.TRUE));
+        khachHangDtoList.add(new KhachHangDto(5, "Nguyen Hoan", "0961496837","KH05",Boolean.TRUE));
 
         return khachHangDtoList;
     }

@@ -1,11 +1,9 @@
 package com.example.demo.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.example.demo.dto.KichThuocDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +34,7 @@ public class KichThuocController {
 
     @PostMapping(value = "/store")
     public String store(
-            @Valid @ModelAttribute(name = "kichThuoc") KichThuocDto dto
+            @ModelAttribute(name = "kichThuoc") KichThuocDto dto
     ) {
         this.kichThuocDtoList.add(dto);
         return "redirect:/kich-thuoc/create";
@@ -62,7 +60,7 @@ public class KichThuocController {
     @PostMapping(value = "/update/{id}")
     public String update(
             @PathVariable Integer id,
-            @Valid @ModelAttribute(name = "kichThuoc") KichThuocDto dto
+            @ModelAttribute(name = "kichThuoc") KichThuocDto dto
     ) {
         this.kichThuocDtoList.forEach(
                 kichThuocDto -> {

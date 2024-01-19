@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.example.demo.dto.KhachHangDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +53,7 @@ public class KhachHangController {
 
     @PostMapping(value = "/store")
     public String store(
-            @Valid @ModelAttribute(name = "khachHang") KhachHangDto dto
+            @ModelAttribute(name = "khachHang") KhachHangDto dto
     ) {
         this.khachHangDtoList.add(dto);
         return "redirect:/khach-hang/create";
@@ -80,7 +79,7 @@ public class KhachHangController {
     @PostMapping(value = "/update/{id}")
     public String update(
             @PathVariable Integer id,
-            @Valid @ModelAttribute(name = "khachHang") KhachHangDto dto
+            @ModelAttribute(name = "khachHang") KhachHangDto dto
     ) {
         this.khachHangDtoList.forEach(
                 khachHangDto -> {

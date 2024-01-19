@@ -9,38 +9,48 @@
 </head>
 <body>
 
-<h2>Hoa Don Table</h2>
+<h2>San Pham Chi Tiet Table</h2>
 
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Nhan Vien ID</th>
-        <th>Khac Hang ID</th>
-        <th>Ngay Mua Hang</th>
+        <th>Ma SPCT</th>
+        <th>Kich Thuoc ID</th>
+        <th>Mau Sac ID</th>
+        <th>San Pham ID</th>
+        <th>So Luong</th>
+        <th>Don Gia</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="hoaDon" items="${hoaDonList}">
+    <c:forEach var="spChiTiet" items="${spChiTietList}">
         <tr>
-            <td>${hoaDon.id}</td>
+            <td>${spChiTiet.id}</td>
+            <td>${spChiTiet.maSPCT}</td>
             <td>
-                <a href="/nhan-vien/show/${hoaDon.nhanVienId}">
-                        ${hoaDon.nhanVienId}
+                <a href="/kich-thuoc/show/${spChiTiet.khichThuocId}">
+                        ${spChiTiet.khichThuocId}
                 </a>
             </td>
             <td>
-                <a href="/khach-hang/show/${hoaDon.khachHangId}">
-                        ${hoaDon.khachHangId}
+                <a href="/mau-sac/show/${spChiTiet.mauSacId}">
+                        ${spChiTiet.mauSacId}
                 </a>
             </td>
-            <td>${hoaDon.ngayMuaHang}</td>
             <td>
-                <a href="/hoa-don/edit/${hoaDon.id}">
+                <a href="/san-pham/show/${spChiTiet.sanPhamId}">
+                        ${spChiTiet.sanPhamId}
+                </a>
+            </td>
+            <td>${spChiTiet.soLuong}</td>
+            <td>${spChiTiet.donGia}</td>
+            <td>
+                <a href="/sp-chi-tiet/edit/${spChiTiet.id}">
                     <button>Edit</button>
                 </a>
-                <a href="/hoa-don/delete/${hoaDon.id}">
+                <a href="/sp-chi-tiet/delete/${spChiTiet.id}">
                     <button>Delete</button>
                 </a>
             </td>
@@ -49,7 +59,7 @@
     </tbody>
 </table>
 
-<a href="/hoa-don/create">
+<a href="/sp-chi-tiet/create">
     <button>Create</button>
 </a>
 

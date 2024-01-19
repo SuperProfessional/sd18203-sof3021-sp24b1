@@ -1,13 +1,9 @@
 package com.example.demo.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.example.demo.dto.KhachHangDto;
 import com.example.demo.dto.NhanVienDto;
-import io.micrometer.common.util.StringUtils;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,9 +52,7 @@ public class NhanVienController {
     }
 
     @PostMapping(value = "/store")
-    public String store(
-            @Valid @ModelAttribute(name = "nhanVien") NhanVienDto dto
-    ) {
+    public String store(@ModelAttribute(name = "nhanVien") NhanVienDto dto) {
         this.nhanVienDtoList.add(dto);
         return "redirect:/nhan-vien/create";
     }
@@ -83,7 +77,7 @@ public class NhanVienController {
     @PostMapping(value = "/update/{id}")
     public String update(
             @PathVariable Integer id,
-            @Valid @ModelAttribute(name = "nhanVien") NhanVienDto dto
+            @ModelAttribute(name = "nhanVien") NhanVienDto dto
     ) {
         this.nhanVienDtoList.forEach(
                 khachHangDto -> {
