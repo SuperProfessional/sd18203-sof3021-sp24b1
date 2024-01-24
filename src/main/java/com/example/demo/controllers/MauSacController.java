@@ -1,9 +1,8 @@
 package com.example.demo.controllers;
 
-import java.util.List;
-import java.util.Objects;
-
-import com.example.demo.dto.MauSacDto;
+import com.example.demo.dtos.MauSacDto;
+import com.example.demo.entities.MauSacEntity;
+import com.example.demo.repositories.MauSacRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MauSacController {
 
-    private final List<MauSacDto> mauSacDtoList;
+    private final MauSacRepository mauSacRepository;
 
     @GetMapping(value = "/index")
     public String index(Model model) {
-        model.addAttribute("mauSacList", this.mauSacDtoList);
+        model.addAttribute("mauSacList", this.mauSacRepository.findAll());
         return "admin/ql-mau-sac/index";
     }
 
@@ -34,8 +33,14 @@ public class MauSacController {
 
     @PostMapping(value = "/store")
     public String store(@ModelAttribute(name = "mauSac") MauSacDto dto) {
-        this.mauSacDtoList.add(dto);
-        return "redirect:/mau-sac/create";
+        this.mauSacRepository.save(
+                MauSacEntity.builder()
+                        .ma(dto.getMa())
+                        .ten(dto.getTen())
+                        .trangThai(1)
+                        .build()
+        );
+        return "redirect:/mau-sac/index";
     }
 
     @GetMapping(value = "/edit/{id}")
@@ -43,15 +48,17 @@ public class MauSacController {
             Model model,
             @PathVariable(name = "id") Integer id) {
 
-        MauSacDto mauSacDto =
-                this.mauSacDtoList.stream()
-                        .filter(
-                                dto -> Objects.equals(dto.getId(), id)
+        model.addAttribute("mauSac",
+                this.mauSacRepository.findById(id)
+                        .map(entity -> MauSacDto.builder()
+                                .id(entity.getId())
+                                .ma(entity.getMa())
+                                .ten(entity.getTen())
+                                .trangThai(entity.getTrangThai())
+                                .build()
                         )
-                        .findFirst()
-                        .orElse(new MauSacDto());
-
-        model.addAttribute("mauSac", mauSacDto);
+                        .orElse(new MauSacDto())
+        );
         return "admin/ql-mau-sac/edit";
     }
 
@@ -60,22 +67,24 @@ public class MauSacController {
             @PathVariable Integer id,
             @ModelAttribute(name = "mauSac") MauSacDto dto
     ) {
-        this.mauSacDtoList.forEach(
-                mauSacDto -> {
-                    if (Objects.equals(mauSacDto.getId(), id)) {
-                        mauSacDto.setMa(dto.getMa());
-                        mauSacDto.setTen(dto.getTen());
-                    }
-                }
-        );
+        this.mauSacRepository.findById(id)
+                .ifPresent(
+                        entity -> {
+
+                            entity.setId(id);
+                            entity.setMa(dto.getMa());
+                            entity.setTen(dto.getTen());
+//                            entity.setTrangThai(dto.getTrangThai());
+
+                            this.mauSacRepository.save(entity);
+                        }
+                );
         return "redirect:/mau-sac/index";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id) {
-        this.mauSacDtoList.removeIf(
-                mauSacDto -> Objects.equals(mauSacDto.getId(), id)
-        );
+        this.mauSacRepository.deleteById(id);
         return "redirect:/mau-sac/index";
     }
 }

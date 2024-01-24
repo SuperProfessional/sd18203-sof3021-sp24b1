@@ -7,34 +7,36 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
 @Entity
-@Table(name = "hoa_don")
+@Builder
+@Table(name = "HoaDon")
+@NoArgsConstructor
+@AllArgsConstructor
 public class HoaDonEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "nhan_vien_id")
-    private NhanVienEntity nhanVienEntity;
+    @Column(name = "IdKH")
+    private Integer idKH;
 
-    @ManyToOne
-    @JoinColumn(name = "khac_hang_id")
-    private KhachHangEntity khachHangEntity;
+    @Column(name = "IdNV")
+    private Integer idNV;
 
-    @Column(name = "ngay_mua_hang")
+    @Column(name = "NgayMuaHang")
     private LocalDateTime ngayMuaHang;
 
-    @Column(name = "trang_thai")
-    private String trangThai;
+    @Column(name = "TrangThai")
+    private Integer trangThai;
 }

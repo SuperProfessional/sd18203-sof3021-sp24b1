@@ -1,9 +1,12 @@
 package com.example.demo.controllers;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-import com.example.demo.dto.NhanVienDto;
+import com.example.demo.dtos.NhanVienDto;
+import com.example.demo.entities.NhanVienEntity;
+import com.example.demo.repositories.NhanVienRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +22,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class NhanVienController {
 
-    private final List<NhanVienDto> nhanVienDtoList;
+    private final NhanVienRepository nhanVienRepository;
 
     @GetMapping(value = "/index")
     public String index(Model model) {
-        model.addAttribute("nhanVienList", this.nhanVienDtoList);
+        model.addAttribute("nhanVienList",
+                this.nhanVienRepository.findAll()
+                        .stream()
+                        .map(
+                                entity -> NhanVienDto.builder()
+                                        .id(entity.getId())
+                                        .ten(entity.getTen())
+                                        .maNV(entity.getMa())
+                                        .tenDangNhap(entity.getTenDangNhap())
+                                        .matKhau(entity.getMatKhau())
+                                        .trangThai(entity.getTrangThai())
+                                        .build()
+                        )
+                .collect(Collectors.toList())
+        );
         return "admin/ql-nhan-vien/index";
     }
 
@@ -32,11 +49,21 @@ public class NhanVienController {
     public String show(@PathVariable(name = "id") Integer id) {
 
         NhanVienDto nhanVienDto =
-                this.nhanVienDtoList.stream()
+                this.nhanVienRepository.findAll().stream()
                         .filter(
-                                dto -> Objects.equals(dto.getId(), id)
+                                entity -> Objects.equals(entity.getId(), id)
                         )
                         .findFirst()
+                        .map(
+                                entity -> NhanVienDto.builder()
+                                        .id(entity.getId())
+                                        .ten(entity.getTen())
+                                        .maNV(entity.getMa())
+                                        .tenDangNhap(entity.getTenDangNhap())
+                                        .matKhau(entity.getMatKhau())
+                                        .trangThai(entity.getTrangThai())
+                                        .build()
+                        )
                         .orElse(new NhanVienDto());
 
         return "ID: " + nhanVienDto.getId() + "<br>" +
@@ -53,7 +80,16 @@ public class NhanVienController {
 
     @PostMapping(value = "/store")
     public String store(@ModelAttribute(name = "nhanVien") NhanVienDto dto) {
-        this.nhanVienDtoList.add(dto);
+        this.nhanVienRepository.save(
+                NhanVienEntity.builder()
+                        .id(dto.getId())
+                        .ten(dto.getTen())
+                        .ma(dto.getMaNV())
+                        .tenDangNhap(dto.getTenDangNhap())
+                        .matKhau(dto.getMatKhau())
+                        .trangThai(dto.getTrangThai())
+                        .build()
+        );
         return "redirect:/nhan-vien/create";
     }
 
@@ -62,15 +98,20 @@ public class NhanVienController {
             Model model,
             @PathVariable(name = "id") Integer id) {
 
-        NhanVienDto nhanVienDto =
-                this.nhanVienDtoList.stream()
-                        .filter(
-                                dto -> Objects.equals(dto.getId(), id)
+        model.addAttribute("nhanVien",
+                this.nhanVienRepository.findById(id)
+                        .map(
+                                entity -> NhanVienDto.builder()
+                                        .id(entity.getId())
+                                        .ten(entity.getTen())
+                                        .maNV(entity.getMa())
+                                        .tenDangNhap(entity.getTenDangNhap())
+                                        .matKhau(entity.getMatKhau())
+                                        .trangThai(entity.getTrangThai())
+                                        .build()
                         )
-                        .findFirst()
-                        .orElse(new NhanVienDto());
-
-        model.addAttribute("nhanVien", nhanVienDto);
+                        .orElse(new NhanVienDto())
+        );
         return "admin/ql-nhan-vien/edit";
     }
 
@@ -79,24 +120,24 @@ public class NhanVienController {
             @PathVariable Integer id,
             @ModelAttribute(name = "nhanVien") NhanVienDto dto
     ) {
-        this.nhanVienDtoList.forEach(
-                khachHangDto -> {
-                    if (Objects.equals(khachHangDto.getId(), id)) {
-                        khachHangDto.setTen(dto.getTen());
-                        khachHangDto.setMaNV(dto.getMaNV());
-                        khachHangDto.setTenDangNhap(dto.getTenDangNhap());
-                        khachHangDto.setMatKhau(dto.getMatKhau());
-                    }
-                }
-        );
+        this.nhanVienRepository.findById(id)
+                .ifPresent(
+                        entity -> {
+                            entity.setId(id);
+                            entity.setTen(dto.getTen());
+                            entity.setMa(dto.getMaNV());
+                            entity.setTenDangNhap(dto.getTenDangNhap());
+                            entity.setMatKhau(dto.getMatKhau());
+
+                            this.nhanVienRepository.save(entity);
+                        }
+                );
         return "redirect:/nhan-vien/index";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable(name = "id") Integer id) {
-        this.nhanVienDtoList.removeIf(
-                nhanVienDto -> Objects.equals(nhanVienDto.getId(), id)
-        );
+        this.nhanVienRepository.deleteById(id);
         return "redirect:/nhan-vien/index";
     }
 }

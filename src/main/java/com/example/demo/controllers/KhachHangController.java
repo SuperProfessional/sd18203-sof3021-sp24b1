@@ -3,7 +3,7 @@ package com.example.demo.controllers;
 import java.util.List;
 import java.util.Objects;
 
-import com.example.demo.dto.KhachHangDto;
+import com.example.demo.dtos.KhachHangDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

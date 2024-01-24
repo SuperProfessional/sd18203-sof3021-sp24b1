@@ -14,11 +14,11 @@
 <h2>Mau Sac Form</h2>
 
 <f:form action="/mau-sac/store" method="post" modelAttribute="mauSac">
-    <div>
-        <label for="id">ID:</label>
-        <f:input type="number" name="id" path="id"/><br>
-        <f:errors path="id" cssStyle="color: red"/>
-    </div>
+<%--    <div>--%>
+<%--        <label for="id">ID:</label>--%>
+<%--        <f:input type="number" name="id" path="id"/><br>--%>
+<%--        <f:errors path="id" cssStyle="color: red"/>--%>
+<%--    </div>--%>
     <div>
         <label for="ma">Ma:</label>
         <f:input type="text" id="ma" name="ma" path="ma"/><br>

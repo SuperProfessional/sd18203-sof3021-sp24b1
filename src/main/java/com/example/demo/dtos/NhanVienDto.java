@@ -1,22 +1,28 @@
-package com.example.demo.dto;
+package com.example.demo.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class KichThuocDto {
+@AllArgsConstructor
+public class NhanVienDto {
     @NotNull
     private Integer id;
     @NotBlank
-    private String ma;
-    @NotBlank
     private String ten;
-    private Boolean trangThai;
+    @NotBlank
+    private String maNV;
+    @NotBlank
+    private String tenDangNhap;
+    @NotBlank
+    private String matKhau;
+    private Integer trangThai;
 }

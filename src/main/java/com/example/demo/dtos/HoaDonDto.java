@@ -1,4 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.dtos;
+
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,21 +12,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SPChiTietDto {
+public class HoaDonDto {
 
     @NotNull
     private Integer id;
     @NotNull
-    private String maSPCT;
+    private Integer nhanVienId;
     @NotNull
-    private Integer khichThuocId;
-    @NotNull
-    private Integer mauSacId;
-    @NotNull
-    private Integer sanPhamId;
-    @NotNull
-    private Integer soLuong;
-    @NotNull
-    private Float donGia;
+    private Integer khachHangId;
+    private LocalDateTime ngayMuaHang;
     private Boolean trangThai;
 }

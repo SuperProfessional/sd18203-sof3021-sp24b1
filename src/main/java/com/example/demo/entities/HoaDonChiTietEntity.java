@@ -1,49 +1,48 @@
 package com.example.demo.entities;
 
+import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
 @Entity
-@Table
+@Builder
+@Table(name = "HoaDonChiTiet")
+@NoArgsConstructor
+@AllArgsConstructor
 public class HoaDonChiTietEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(
-            name = "hoa_don_id",
-            referencedColumnName = "id"
-    )
-    private HoaDonEntity hoaDonEntity;
+    @Column(name = "IdHoaDon")
+    private Integer idHoaDon;
 
-    @OneToOne
-    @JoinColumn(
-            name = "spct_id",
-            referencedColumnName = "id"
-    )
-    private SanPhamChiTietEntity sanPhamChiTietEntity;
+    @Column(name = "IdSPCT")
+    private Integer idSPCT;
 
-    @Column(name = "so_luong")
+    @Column(name = "SoLuong")
     private Integer soLuong;
 
-    @Column(name = "don_gia")
-    private Double donGia;
+    @Column(name = "DonGia")
+    private Integer donGia;
 
-    @Column(name = "trang_thai")
-    private String trangThai;
+    @Column(name = "ThoiGian")
+    private LocalDateTime thoiGian;
+
+    @Column(name = "TrangThai")
+    private Integer trangThai;
 }

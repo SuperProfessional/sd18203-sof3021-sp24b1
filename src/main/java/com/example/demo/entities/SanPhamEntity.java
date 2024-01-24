@@ -6,27 +6,32 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "san_pham")
+@Builder
+@Table(name = "MauSac")
+@NoArgsConstructor
+@AllArgsConstructor
 public class SanPhamEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "ma")
+    @Column(name = "Ma")
     private String ma;
 
-    @Column(name = "ten")
+    @Column(name = "Ten")
     private String ten;
 
-    @Column(name = "trang_thai")
-    private String trangThai;
-
+    @Column(name = "TrangThai")
+    private Integer trangThai;
 }
