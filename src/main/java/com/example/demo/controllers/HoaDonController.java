@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import com.example.demo.dto.HoaDonDto;
-import com.example.demo.dto.KhachHangDto;
-import com.example.demo.dto.NhanVienDto;
+import com.example.demo.dtos.HoaDonDto;
+import com.example.demo.dtos.KhachHangDto;
+import com.example.demo.dtos.NhanVienDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

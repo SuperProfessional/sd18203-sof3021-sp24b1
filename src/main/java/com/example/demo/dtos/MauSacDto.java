@@ -1,22 +1,21 @@
-package com.example.demo.dto;
+package com.example.demo.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class SanPhamDto {
+@AllArgsConstructor
+public class MauSacDto {
     @NotNull
     private Integer id;
     @NotBlank
     private String ma;
     @NotBlank
     private String ten;
-    private Boolean trangThai;
+
+    private Integer trangThai;
 }

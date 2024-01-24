@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,14 +11,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KhachHangDto {
+public class SanPhamDto {
     @NotNull
     private Integer id;
     @NotBlank
+    private String ma;
+    @NotBlank
     private String ten;
-    @NotBlank
-    private String sdt;
-    @NotBlank
-    private String maKH;
     private Boolean trangThai;
 }
