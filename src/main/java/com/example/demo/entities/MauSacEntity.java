@@ -5,37 +5,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Setter
 @Getter
 @Entity
-@Table(name = "mau_sac")
+@Builder
+@Table(name = "MauSac")
+@NoArgsConstructor
+@AllArgsConstructor
 public class MauSacEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "ma")
+    @Column(name = "Ma")
     private String ma;
 
-    @Column(name = "ten")
+    @Column(name = "Ten")
     private String ten;
 
-    @Column(name = "trang_thai")
-    private String trangThai;
-
-    @ManyToOne
-    @JoinColumn(name = "spct_id")
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private SanPhamChiTietEntity sanPhamChiTietEntity;
+    @Column(name = "TrangThai")
+    private Integer trangThai;
 }

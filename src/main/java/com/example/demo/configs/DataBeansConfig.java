@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.dto.HoaDonDto;
-import com.example.demo.dto.KhachHangDto;
-import com.example.demo.dto.MauSacDto;
-import com.example.demo.dto.NhanVienDto;
-import com.example.demo.dto.SanPhamDto;
+import com.example.demo.dtos.HoaDonDto;
+import com.example.demo.dtos.KhachHangDto;
+import com.example.demo.dtos.MauSacDto;
+import com.example.demo.dtos.NhanVienDto;
+import com.example.demo.dtos.SanPhamDto;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,11 +22,11 @@ public class DataBeansConfig {
     List<MauSacDto> dataMauSacDto(){
 
         List<MauSacDto> mauSacDtoList = new ArrayList<>();
-        mauSacDtoList.add(new MauSacDto(1, "#FF0000", "White",Boolean.TRUE));
-        mauSacDtoList.add(new MauSacDto(2, "#00008B", "Black",Boolean.TRUE));
-        mauSacDtoList.add(new MauSacDto(3, "00FF00", "Green",Boolean.TRUE));
-        mauSacDtoList.add(new MauSacDto(4, "FF00FF", "Olive",Boolean.TRUE));
-        mauSacDtoList.add(new MauSacDto(5, "ADD8E6", "Orange",Boolean.TRUE));
+//        mauSacDtoList.add(new MauSacDto(1, "#FF0000", "White",Boolean.TRUE));
+//        mauSacDtoList.add(new MauSacDto(2, "#00008B", "Black",Boolean.TRUE));
+//        mauSacDtoList.add(new MauSacDto(3, "00FF00", "Green",Boolean.TRUE));
+//        mauSacDtoList.add(new MauSacDto(4, "FF00FF", "Olive",Boolean.TRUE));
+//        mauSacDtoList.add(new MauSacDto(5, "ADD8E6", "Orange",Boolean.TRUE));
 
         return mauSacDtoList;
     }
